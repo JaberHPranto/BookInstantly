@@ -1,0 +1,92 @@
+.header {
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.headerContainer {
+  width: 100%;
+  max-width: 1024px;
+  margin: 20px 0 100px 0;
+}
+.headerList {
+  display: flex;
+  gap: 40px;
+}
+.headerListItems {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.headerBtn {
+  background-color: #0071c2;
+  color: white;
+  padding: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+.headerSearch {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 3px solid #febb02;
+  height: 30px;
+  width: 100%;
+  max-width: 1024px;
+  justify-content: space-around;
+  padding: 10px 0px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -25px;
+}
+
+.headerIcon {
+  color: #777;
+}
+.headerSearchItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.headerSearchInput {
+  border: none;
+  outline: none;
+}
+.headerSearchText {
+  color: #777;
+}
+.date {
+  position: absolute;
+  top: 50px;
+}
+.options {
+  position: absolute;
+  top: 50px;
+  background-color: white;
+  color: #777;
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+}
+.optionsItem {
+  width: 200px;
+  margin: 15px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.optionCounter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-style: 13px;
+}
+.optionCounterBtn {
+  width: 30px;
+  height: 30px;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  cursor: pointer;
+}
+.optionCounterBtn:disabled {
+  cursor: not-allowed;
+}
