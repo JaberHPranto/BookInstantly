@@ -1,0 +1,27 @@
+.footer {
+  width: 100%;
+  max-width: 1024px;
+  font-size: 13px;
+}
+.fLists {
+  display: flex;
+  justify-content: space-between;
+  color: #0071c2;
+}
+.fList {
+  list-style: none;
+}
+.fList > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+.fListItem {
+  cursor: pointer;
+}
+.fListItem:hover {
+  color: #bc5b01;
+}
+.fText {
+  text-align: center;
+  margin: 10px 0;
+  color: #777;
+}
