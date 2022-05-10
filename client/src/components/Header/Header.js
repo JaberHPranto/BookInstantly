@@ -10,7 +10,7 @@ import { IoBedOutline, IoCalendarOutline, IoPersonOutline } from "react-icons/io
 import { MdAttractions, MdDirectionsCar, MdLocalHotel } from "react-icons/md"
 import "./header.css"
 
-function Header() {
+function Header({ type }) {
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -37,7 +37,7 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="headerContainer">
+      <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
         <div className="headerList">
           <div className="headerListItems">
             <MdLocalHotel />
@@ -60,105 +60,122 @@ function Header() {
             <span>Airport Taxi&#39;s</span>
           </div>
         </div>
-        <h1 className="headerTitle">A lifetime of discounts? It&#39;s Genius.</h1>
-        <p className="headerDesc">
-          Get rewarded for your travels – unlock instant savings of 10% or more with a free
-          bookInstantly account
-        </p>
-        <button className="headerBtn">Sign in / Register</button>
+        {type !== "list" && (
+          <>
+            <h1 className="headerTitle">A lifetime of discounts? It&#39;s Genius.</h1>
+            <p className="headerDesc">
+              Get rewarded for your travels – unlock instant savings of 10% or more with a free
+              bookInstantly account
+            </p>
+            <button className="headerBtn">Sign in / Register</button>
 
-        <div className="headerSearch">
-          {/* Destination section */}
-          <div className="headerSearchItem">
-            <IoBedOutline className="headerIcon" />
-            <input type="text" placeholder="Where are you going ?" className="headerSearchInput" />
-          </div>
-
-          {/* Calender Date section */}
-          <div className="headerSearchItem">
-            <IoCalendarOutline className="headerIcon" />
-            <span className="headerSearchText" onClick={() => setOpenDate(!openDate)}>{`${format(
-              date[0].startDate,
-              "dd/MM/yyyy",
-            )} to ${format(date[0].endDate, "dd/MM/yyyy")}`}</span>
-            {openDate && (
-              <DateRange
-                editableDateInputs
-                onChange={(item) => setDate([item.selection])}
-                moveRangeOnFirstSelection={false}
-                ranges={date}
-                className="date"
-              />
-            )}
-          </div>
-
-          {/* Number of People Section */}
-          <div className="headerSearchItem">
-            <IoPersonOutline className="headerIcon" />
-            <span
-              className="headerSearchText"
-              onClick={() => setOpenOptions(!openOptions)}
-            >{`${options.adult} adults - ${options.children} children - ${options.room} rooms`}</span>
-            {openOptions && (
-              <div className="options">
-                <div className="optionsItem">
-                  <span className="optionText">Adult</span>
-                  <div className="optionCounter">
-                    <button className="optionCounterBtn" onClick={() => handleOption("adult", "i")}>
-                      +
-                    </button>
-                    <span className="optionCounterNumber">{options.adult}</span>
-                    <button
-                      className="optionCounterBtn"
-                      disabled={options.adult <= 1}
-                      onClick={() => handleOption("adult", "d")}
-                    >
-                      -
-                    </button>
-                  </div>
-                </div>
-                <div className="optionsItem">
-                  <span className="optionText">Children</span>
-                  <div className="optionCounter">
-                    <button
-                      className="optionCounterBtn"
-                      onClick={() => handleOption("children", "i")}
-                    >
-                      +
-                    </button>
-                    <span className="optionCounterNumber">{options.children}</span>
-                    <button
-                      className="optionCounterBtn"
-                      disabled={options.children <= 0}
-                      onClick={() => handleOption("children", "d")}
-                    >
-                      -
-                    </button>
-                  </div>
-                </div>
-                <div className="optionsItem">
-                  <span className="optionText">Room</span>
-                  <div className="optionCounter">
-                    <button className="optionCounterBtn" onClick={() => handleOption("room", "i")}>
-                      +
-                    </button>
-                    <span className="optionCounterNumber">{options.room}</span>
-                    <button
-                      className="optionCounterBtn"
-                      disabled={options.room <= 1}
-                      onClick={() => handleOption("room", "d")}
-                    >
-                      -
-                    </button>
-                  </div>
-                </div>
+            <div className="headerSearch">
+              {/* Destination section */}
+              <div className="headerSearchItem">
+                <IoBedOutline className="headerIcon" />
+                <input
+                  type="text"
+                  placeholder="Where are you going ?"
+                  className="headerSearchInput"
+                />
               </div>
-            )}
-          </div>
-          <div className="headerSearchItem">
-            <button className="headerBtn">Search</button>
-          </div>
-        </div>
+
+              {/* Calender Date section */}
+              <div className="headerSearchItem">
+                <IoCalendarOutline className="headerIcon" />
+                <span
+                  className="headerSearchText"
+                  onClick={() => setOpenDate(!openDate)}
+                >{`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
+                  date[0].endDate,
+                  "dd/MM/yyyy",
+                )}`}</span>
+                {openDate && (
+                  <DateRange
+                    editableDateInputs
+                    onChange={(item) => setDate([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={date}
+                    className="date"
+                  />
+                )}
+              </div>
+
+              {/* Number of People Section */}
+              <div className="headerSearchItem">
+                <IoPersonOutline className="headerIcon" />
+                <span
+                  className="headerSearchText"
+                  onClick={() => setOpenOptions(!openOptions)}
+                >{`${options.adult} adults - ${options.children} children - ${options.room} rooms`}</span>
+                {openOptions && (
+                  <div className="options">
+                    <div className="optionsItem">
+                      <span className="optionText">Adult</span>
+                      <div className="optionCounter">
+                        <button
+                          className="optionCounterBtn"
+                          onClick={() => handleOption("adult", "i")}
+                        >
+                          +
+                        </button>
+                        <span className="optionCounterNumber">{options.adult}</span>
+                        <button
+                          className="optionCounterBtn"
+                          disabled={options.adult <= 1}
+                          onClick={() => handleOption("adult", "d")}
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                    <div className="optionsItem">
+                      <span className="optionText">Children</span>
+                      <div className="optionCounter">
+                        <button
+                          className="optionCounterBtn"
+                          onClick={() => handleOption("children", "i")}
+                        >
+                          +
+                        </button>
+                        <span className="optionCounterNumber">{options.children}</span>
+                        <button
+                          className="optionCounterBtn"
+                          disabled={options.children <= 0}
+                          onClick={() => handleOption("children", "d")}
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                    <div className="optionsItem">
+                      <span className="optionText">Room</span>
+                      <div className="optionCounter">
+                        <button
+                          className="optionCounterBtn"
+                          onClick={() => handleOption("room", "i")}
+                        >
+                          +
+                        </button>
+                        <span className="optionCounterNumber">{options.room}</span>
+                        <button
+                          className="optionCounterBtn"
+                          disabled={options.room <= 1}
+                          onClick={() => handleOption("room", "d")}
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="headerSearchItem">
+                <button className="headerBtn">Search</button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
