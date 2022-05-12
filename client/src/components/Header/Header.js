@@ -8,6 +8,7 @@ import "react-date-range/dist/theme/default.css" // theme css file
 import { FaPlane, FaTaxi } from "react-icons/fa"
 import { IoBedOutline, IoCalendarOutline, IoPersonOutline } from "react-icons/io5"
 import { MdAttractions, MdDirectionsCar, MdLocalHotel } from "react-icons/md"
+import { useNavigate } from "react-router-dom"
 import "./header.css"
 
 function Header({ type }) {
@@ -20,11 +21,14 @@ function Header({ type }) {
   ])
   const [openDate, setOpenDate] = useState(false)
   const [openOptions, setOpenOptions] = useState(false)
+  const [destination, setDestination] = useState("")
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
     room: 1,
   })
+
+  const navigate = useNavigate()
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -33,6 +37,10 @@ function Header({ type }) {
         [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
       }
     })
+  }
+
+  const handleSearch = () => {
+    navigate("/hotels", { state: { destination, date, options } })
   }
 
   return (
@@ -77,6 +85,8 @@ function Header({ type }) {
                   type="text"
                   placeholder="Where are you going ?"
                   className="headerSearchInput"
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
 
@@ -97,6 +107,7 @@ function Header({ type }) {
                     moveRangeOnFirstSelection={false}
                     ranges={date}
                     className="date"
+                    minDate={new Date()}
                   />
                 )}
               </div>
@@ -171,7 +182,9 @@ function Header({ type }) {
                 )}
               </div>
               <div className="headerSearchItem">
-                <button className="headerBtn">Search</button>
+                <button className="headerBtn" onClick={handleSearch}>
+                  Search
+                </button>
               </div>
             </div>
           </>
