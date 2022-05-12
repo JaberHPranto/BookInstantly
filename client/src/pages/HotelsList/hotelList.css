@@ -12,7 +12,7 @@
 
 .listSearch {
   flex: 1;
-  background-color: #febb02;
+  background-color: var(--color-secondary);
   padding: 10px;
   border-radius: 10px;
   position: sticky;
@@ -40,7 +40,7 @@
 }
 .lsItem > input:focus,
 .lsItem > span:focus {
-  outline: 2px solid #0071c2;
+  outline: 2px solid var(--color-primary-light);
 }
 .lsItem > span {
   height: 30px;
@@ -66,7 +66,7 @@
   padding: 10px;
 }
 .lsSearchBtn {
-  background-color: #0071c2;
+  background-color: var(--color-primary-light);
   color: white;
   padding: 10px;
   border: none;

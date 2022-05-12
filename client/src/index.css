@@ -1,5 +1,7 @@
 :root {
   --color-primary: #003580;
+  --color-primary-light: #0071c2;
+  --color-secondary: #febb02;
 }
 body {
   margin: 0;

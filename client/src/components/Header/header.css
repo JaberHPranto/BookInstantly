@@ -23,7 +23,7 @@
   align-items: center;
 }
 .headerBtn {
-  background-color: #0071c2;
+  background-color: var(--color-primary-light);
   color: white;
   padding: 10px;
   font-weight: 500;
@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   background-color: white;
-  border: 3px solid #febb02;
+  border: 3px solid var(--color-secondary);
   height: 30px;
   width: 100%;
   max-width: 1024px;

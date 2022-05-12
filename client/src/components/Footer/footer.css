@@ -6,7 +6,7 @@
 .fLists {
   display: flex;
   justify-content: space-between;
-  color: #0071c2;
+  color: var(--color-primary-light);
 }
 .fList {
   list-style: none;
