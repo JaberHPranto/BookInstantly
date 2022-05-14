@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react"
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaWindowClose } from "react-icons/fa"
 import { MdLocationOn } from "react-icons/md"
 import { Footer, Header, MailList, Navbar } from "../../components"
 import "./hotelDetails.css"
@@ -31,12 +31,38 @@ function HotelDetails() {
     setSliderNo(index)
     setOpen(true)
   }
+  const handleDirection = (direction) => {
+    let newSlideNumber
+    if (direction === "l") {
+      newSlideNumber = sliderNo === 0 ? 5 : sliderNo - 1
+    } else newSlideNumber = sliderNo === 5 ? 0 : sliderNo + 1
+
+    setSliderNo(newSlideNumber)
+  }
+
   return (
     <div>
       <Navbar />
       <Header type="list" />
       <div className="hotelContainer">
-        {open && <div className="slider">slider no {sliderNo}</div>}
+        {open && (
+          <div className="slider">
+            <FaWindowClose className="close" role="presentation" onClick={() => setOpen(false)} />
+            <FaArrowAltCircleLeft
+              className="arrow left-arrow"
+              role="presentation"
+              onClick={() => handleDirection("l")}
+            />
+            <div className="sliderWrapper">
+              <img src={photos[sliderNo].src} alt="" className="sliderImg" />
+            </div>
+            <FaArrowAltCircleRight
+              className="arrow right-arrow"
+              role="presentation"
+              onClick={() => handleDirection("r")}
+            />
+          </div>
+        )}
         <div className="hotelWrapper">
           <button className="reserveBtn">Reserve or Book Now</button>
           <h1 className="hotelTitle">Grand Hotel</h1>
