@@ -3,6 +3,7 @@
   height: 50px;
   display: flex;
   justify-content: center;
+  padding-top: 10px;
 }
 .navContainer {
   width: 100%;
@@ -13,8 +14,10 @@
   justify-content: space-between;
 }
 .logo {
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 24px;
   cursor: pointer;
+  font-family: "Lato";
 }
 .navBtn {
   margin-left: 20px;
