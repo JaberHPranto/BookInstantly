@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { DateRange } from "react-date-range"
 import { useLocation } from "react-router-dom"
 import { Header, Navbar } from "../../components"
+import SearchItem from "../../components/SearchItemList/SearchItemList"
 import "./hotelList.css"
 
 function HotelsList() {
@@ -83,7 +84,16 @@ function HotelsList() {
             </div>
             <button className="lsSearchBtn">Search</button>
           </div>
-          <div className="listResult" />
+          <div className="listResult">
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+          </div>
         </div>
       </div>
     </div>

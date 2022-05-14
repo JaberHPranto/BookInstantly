@@ -17,6 +17,7 @@
   border-radius: 10px;
   position: sticky;
   top: 10px;
+  height: max-content;
 }
 
 .lsTitle {
@@ -61,6 +62,12 @@
 }
 .lsOptionInput {
   width: 50px;
+  border: none;
+  outline: none;
+  padding: 2px;
+}
+.lsOptionInput:focus {
+  outline: 2px solid var(--color-primary-light);
 }
 .lsOptions {
   padding: 10px;
