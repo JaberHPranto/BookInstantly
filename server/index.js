@@ -1,21 +1,19 @@
 import dotenv from "dotenv";
 import express from "express";
-import mongoose from "mongoose";
+import connectDB from "./config/db.js";
+import authRouteHandler from "./routes/authRoute.js";
+import hotelsRouteHandler from "./routes/hotelsRoute.js";
 
 const app = express();
 dotenv.config();
 
-const connect = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("Mongodb connected !!!");
-  } catch (error) {
-    throw error;
-  }
-};
+// middlewares
+app.use(express.json());
+app.use("/api/auth", authRouteHandler);
+app.use("/api/hotels", hotelsRouteHandler);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  connect();
+  connectDB();
   console.log(`Server started on port ${PORT} 😎`);
 });
