@@ -4,6 +4,7 @@ import express from "express";
 import connectDB from "./config/db.js";
 import authRouteHandler from "./routes/authRoute.js";
 import hotelsRouteHandler from "./routes/hotelsRoute.js";
+import usersRouteHandler from "./routes/usersRoute.js";
 
 const app = express();
 dotenv.config();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth", authRouteHandler);
 app.use("/api/hotels", hotelsRouteHandler);
+app.use("/api/users", usersRouteHandler);
 
 // error handling middleware
 app.use((err, req, res, next) => {
