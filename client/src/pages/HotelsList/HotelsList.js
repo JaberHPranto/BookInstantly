@@ -84,6 +84,7 @@ function HotelsList() {
             </div>
             <button className="lsSearchBtn">Search</button>
           </div>
+
           <div className="listResult">
             <SearchItem />
             <SearchItem />
