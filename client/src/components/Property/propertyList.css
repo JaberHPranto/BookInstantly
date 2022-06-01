@@ -18,6 +18,7 @@
 }
 .pListTitles > h1 {
   font-size: 18px;
+  text-transform: capitalize;
 }
 .pListTitles > p {
   font-size: 14px;
