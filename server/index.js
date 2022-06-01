@@ -4,6 +4,7 @@ import express from "express";
 import connectDB from "./config/db.js";
 import authRouteHandler from "./routes/authRoute.js";
 import hotelsRouteHandler from "./routes/hotelsRoute.js";
+import roomRouteHandler from "./routes/roomsRoute.js";
 import usersRouteHandler from "./routes/usersRoute.js";
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRouteHandler);
 app.use("/api/hotels", hotelsRouteHandler);
 app.use("/api/users", usersRouteHandler);
+app.use("/api/rooms", roomRouteHandler);
 
 // error handling middleware
 app.use((err, req, res, next) => {

@@ -2,7 +2,7 @@ import HotelModel from "../models/hotelsModel.js";
 import createError from "../utils/error.js";
 
 // get@ create hotels -> /api/hotels
-export const createHotels = async (req, res) => {
+export const createHotels = async (req, res, next) => {
   const newHotel = new HotelModel(req.body);
   try {
     const savedHotel = await newHotel.save();
@@ -13,7 +13,7 @@ export const createHotels = async (req, res) => {
 };
 
 // put@ update hotels -> /api/hotels/:id
-export const updateHotel = async (req, res) => {
+export const updateHotel = async (req, res, next) => {
   const hotelId = req.params.id;
   try {
     const updatedHotel = await HotelModel.findByIdAndUpdate(
@@ -30,7 +30,7 @@ export const updateHotel = async (req, res) => {
 };
 
 // delete@ delete hotels -> /api/hotels/:id
-export const deleteHotel = async (req, res) => {
+export const deleteHotel = async (req, res, next) => {
   const hotelId = req.params.id;
   try {
     await HotelModel.findByIdAndDelete(hotelId);
@@ -54,7 +54,7 @@ export const getHotelById = async (req, res, next) => {
 };
 
 // get@ get all hotels -> /api/hotels
-export const getHotels = async (req, res) => {
+export const getHotels = async (req, res, next) => {
   try {
     const hotels = await HotelModel.find();
     res.status(200).json(hotels);
