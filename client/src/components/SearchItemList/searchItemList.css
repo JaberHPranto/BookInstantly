@@ -9,7 +9,7 @@
 }
 
 .siImage {
-  height: 200px;
+  height: 210px;
   width: 200px;
   object-fit: cover;
 }
@@ -32,6 +32,12 @@
   width: max-content;
   padding: 3px;
   border-radius: 5px;
+}
+.siFeatures {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .siDistance,
 .siSubtitle,

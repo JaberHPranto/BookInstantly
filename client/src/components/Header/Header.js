@@ -126,17 +126,17 @@ function Header({ type }) {
                       <div className="optionCounter">
                         <button
                           className="optionCounterBtn"
-                          onClick={() => handleOption("adult", "i")}
-                        >
-                          +
-                        </button>
-                        <span className="optionCounterNumber">{options.adult}</span>
-                        <button
-                          className="optionCounterBtn"
                           disabled={options.adult <= 1}
                           onClick={() => handleOption("adult", "d")}
                         >
                           -
+                        </button>
+                        <span className="optionCounterNumber">{options.adult}</span>
+                        <button
+                          className="optionCounterBtn"
+                          onClick={() => handleOption("adult", "i")}
+                        >
+                          +
                         </button>
                       </div>
                     </div>
@@ -145,17 +145,17 @@ function Header({ type }) {
                       <div className="optionCounter">
                         <button
                           className="optionCounterBtn"
-                          onClick={() => handleOption("children", "i")}
-                        >
-                          +
-                        </button>
-                        <span className="optionCounterNumber">{options.children}</span>
-                        <button
-                          className="optionCounterBtn"
                           disabled={options.children <= 0}
                           onClick={() => handleOption("children", "d")}
                         >
                           -
+                        </button>
+                        <span className="optionCounterNumber">{options.children}</span>
+                        <button
+                          className="optionCounterBtn"
+                          onClick={() => handleOption("children", "i")}
+                        >
+                          +
                         </button>
                       </div>
                     </div>
@@ -164,17 +164,17 @@ function Header({ type }) {
                       <div className="optionCounter">
                         <button
                           className="optionCounterBtn"
-                          onClick={() => handleOption("room", "i")}
-                        >
-                          +
-                        </button>
-                        <span className="optionCounterNumber">{options.room}</span>
-                        <button
-                          className="optionCounterBtn"
                           disabled={options.room <= 1}
                           onClick={() => handleOption("room", "d")}
                         >
                           -
+                        </button>
+                        <span className="optionCounterNumber">{options.room}</span>
+                        <button
+                          className="optionCounterBtn"
+                          onClick={() => handleOption("room", "i")}
+                        >
+                          +
                         </button>
                       </div>
                     </div>
