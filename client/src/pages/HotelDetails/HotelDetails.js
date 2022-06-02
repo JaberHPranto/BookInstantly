@@ -11,6 +11,7 @@ function HotelDetails() {
   const [open, setOpen] = useState(false)
 
   const { id } = useParams()
+  // const { destination, date, options } = useSearchContext()
 
   const { loading, data: hotel } = useFetch(`/hotels/find/${id}`)
 

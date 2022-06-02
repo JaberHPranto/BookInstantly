@@ -9,6 +9,7 @@ import { FaPlane, FaTaxi } from "react-icons/fa"
 import { IoBedOutline, IoCalendarOutline, IoPersonOutline } from "react-icons/io5"
 import { MdAttractions, MdDirectionsCar, MdLocalHotel } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
+import { useSearchContext } from "../../context/searchContext"
 import "./header.css"
 
 function Header({ type }) {
@@ -29,6 +30,8 @@ function Header({ type }) {
   })
 
   const navigate = useNavigate()
+  const { dispatch } = useSearchContext()
+  // const { dispatch } = useContext(SearchContext)
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -40,6 +43,7 @@ function Header({ type }) {
   }
 
   const handleSearch = () => {
+    dispatch({ type: "NEW_SEARCH", payload: { destination, date, options } })
     navigate("/hotels", { state: { destination, date, options } })
   }
 
