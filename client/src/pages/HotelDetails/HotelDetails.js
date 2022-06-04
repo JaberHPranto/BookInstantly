@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react"
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaWindowClose } from "react-icons/fa"
 import { MdLocationOn } from "react-icons/md"
 import { useParams } from "react-router-dom"
 import { Footer, Header, MailList, Navbar } from "../../components"
+import { useSearchContext } from "../../context/searchContext"
 import useFetch from "../../hooks/useFetch"
 import "./hotelDetails.css"
 
@@ -27,6 +29,18 @@ function HotelDetails() {
 
     setSliderNo(newSlideNumber)
   }
+
+  const { date, options } = useSearchContext()
+
+  // calculating days between two dates
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24
+  function dayDifference(date1, date2) {
+    const timeDiff = Math.abs(date2 - date1)
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY)
+    return diffDays
+  }
+
+  const days = dayDifference(date[0].endDate.getTime(), date[0].startDate.getTime())
 
   return (
     <div>
@@ -92,7 +106,7 @@ function HotelDetails() {
                   of 9.8!
                 </span>
                 <h2>
-                  <b>$945</b> (9 nights)
+                  <b>${days * hotel.cheapestPrice * options.room}</b> ({days} nights)
                 </h2>
                 <button className="bookBtn">Reserve or Book Now!</button>
               </div>
