@@ -1,7 +1,8 @@
-/* eslint-disable no-unused-vars */
 import axios from "axios"
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { useAuthContext } from "../../context/userContext"
+import "./login.css"
 
 function Login() {
   const [credentials, setCredentials] = useState({
@@ -9,7 +10,8 @@ function Login() {
     password: "",
   })
 
-  const { user, loading, error, dispatch } = useAuthContext()
+  const { loading, error, dispatch } = useAuthContext()
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setCredentials((prev) => {
@@ -26,6 +28,7 @@ function Login() {
     try {
       const res = await axios.post("/auth/login", credentials)
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+      navigate("/")
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data })
     }
@@ -51,11 +54,11 @@ function Login() {
             className="lInput"
             onChange={handleChange}
           />
+          <button disabled={loading} onClick={handleSubmit} className="lButton">
+            Login
+          </button>
+          {error && <span>{error.message}</span>}
         </div>
-        <button onClick={handleSubmit} className="lBtn">
-          Login
-        </button>
-        {error && <span>{error.message}</span>}
       </div>
     </div>
   )

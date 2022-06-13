@@ -2,18 +2,22 @@
 import React, { useState } from "react"
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaWindowClose } from "react-icons/fa"
 import { MdLocationOn } from "react-icons/md"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Footer, Header, MailList, Navbar } from "../../components"
+import Reserve from "../../components/Reserve/Reserve"
 import { useSearchContext } from "../../context/searchContext"
+import { useAuthContext } from "../../context/userContext"
 import useFetch from "../../hooks/useFetch"
 import "./hotelDetails.css"
 
 function HotelDetails() {
   const [sliderNo, setSliderNo] = useState(0)
   const [open, setOpen] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
 
   const { id } = useParams()
-  // const { destination, date, options } = useSearchContext()
+  const navigate = useNavigate()
+  const { user } = useAuthContext()
 
   const { loading, data: hotel } = useFetch(`/hotels/find/${id}`)
 
@@ -31,6 +35,12 @@ function HotelDetails() {
   }
 
   const { date, options } = useSearchContext()
+
+  const handleReserve = () => {
+    if (user) {
+      setOpenModal(true)
+    } else navigate("/login")
+  }
 
   // calculating days between two dates
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24
@@ -69,7 +79,9 @@ function HotelDetails() {
             </div>
           )}
           <div className="hotelWrapper">
-            <button className="reserveBtn">Reserve or Book Now</button>
+            <button className="reserveBtn" onClick={handleReserve}>
+              Reserve or Book Now
+            </button>
             <h1 className="hotelTitle">{hotel.name}</h1>
             <div className="hotelAddress">
               <MdLocationOn />
@@ -108,7 +120,9 @@ function HotelDetails() {
                 <h2>
                   <b>${days * hotel.cheapestPrice * options.room}</b> ({days} nights)
                 </h2>
-                <button className="bookBtn">Reserve or Book Now!</button>
+                <button className="bookBtn" onClick={handleReserve}>
+                  Reserve or Book Now!
+                </button>
               </div>
             </div>
           </div>
@@ -116,6 +130,7 @@ function HotelDetails() {
           <Footer />
         </div>
       )}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   )
 }

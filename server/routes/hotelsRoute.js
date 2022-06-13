@@ -4,6 +4,7 @@ import {
   countByType,
   createHotels,
   deleteHotel,
+  getAllRooms,
   getHotelById,
   getHotels,
   updateHotel,
@@ -21,5 +22,7 @@ router.delete("/:id", verifyAdmin, deleteHotel);
 
 router.get("/countByCity", countByCity);
 router.get("/countByType", countByType);
+
+router.get("/rooms/:id", getAllRooms);
 
 export default router;

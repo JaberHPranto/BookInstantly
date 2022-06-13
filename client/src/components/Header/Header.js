@@ -10,6 +10,7 @@ import { IoBedOutline, IoCalendarOutline, IoPersonOutline } from "react-icons/io
 import { MdAttractions, MdDirectionsCar, MdLocalHotel } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
 import { useSearchContext } from "../../context/searchContext"
+import { useAuthContext } from "../../context/userContext"
 import "./header.css"
 
 function Header({ type }) {
@@ -31,7 +32,7 @@ function Header({ type }) {
 
   const navigate = useNavigate()
   const { dispatch } = useSearchContext()
-  // const { dispatch } = useContext(SearchContext)
+  const { user } = useAuthContext()
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -79,7 +80,7 @@ function Header({ type }) {
               Get rewarded for your travels – unlock instant savings of 10% or more with a free
               bookInstantly account
             </p>
-            <button className="headerBtn">Sign in / Register</button>
+            {user ? user.username : <button className="headerBtn">Sign in / Register</button>}
 
             <div className="headerSearch">
               {/* Destination section */}
