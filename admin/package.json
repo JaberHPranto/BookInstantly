@@ -1,6 +1,7 @@
 {
   "name": "lamadmin",
   "version": "0.1.0",
+  "proxy": "http://localhost:8080/api",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.8.1",

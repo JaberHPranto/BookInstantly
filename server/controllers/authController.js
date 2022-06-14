@@ -4,13 +4,12 @@ import UserModel from "../models/userModel.js";
 import createError from "../utils/error.js";
 
 export const registerUser = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { password } = req.body;
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const newUser = new UserModel({
-      username,
-      email,
+      ...req.body,
       password: hashedPassword,
     });
 
@@ -47,7 +46,7 @@ export const loginUser = async (req, res, next) => {
         httpOnly: true,
       })
       .status(200)
-      .json(otherDetails);
+      .json({ details: { otherDetails }, isAdmin });
   } catch (error) {
     next(error);
   }
